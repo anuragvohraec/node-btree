@@ -1,5 +1,5 @@
-const { BTree } = require("../lib");
-//const { BTree } = require("../lib/binding/Debug/node-v72-linux-x64/node_btree.node");
+// const { BTree } = require("../lib");
+const { BTree } = require("../lib/binding/Debug/node-v72-linux-x64/node_btree.node");
 
 const MSG_TOO_FEW_ARGUMENTS = "Too few arguments.";
 
@@ -695,11 +695,20 @@ describe('Traverse functionality', () => {
 });
 
 describe('Extra methods', () => {
-  it.todo("toArray()");
-  it.todo("toArrays()");
-  it.todo("toJSON()");
-  it.todo("toSet()");
-  it.todo("toMap()");
+  describe("To something methods", () => {
+    it.todo("toArray()");
+    it.todo("toArrays()");
+    it.todo("toJSON()");
+    it.todo("toSet()");
+    it("toMap()", () => {
+      const btree = initBtree();
+
+      const map = btree.toMap();
+
+      // expect(btree.filter.constructor.name).toBe("Function");
+      expect(map.constructor.name).toBe("Map");
+    });
+  });
 
   describe("filter()", () => {
 

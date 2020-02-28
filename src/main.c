@@ -993,6 +993,21 @@ static napi_value esFilter(napi_value env, napi_callback_info cbInfo) {
   return (napi_value) ctxt.data;
 }
 
+static napi_value esToMap(napi_value env, napi_callback_info cbInfo) {
+  napi_value esThis, global, mapConstructor, map;
+
+  NAPI_CALL(env, true,
+    napi_get_global(env, &global));
+
+  NAPI_CALL(env, true,
+    napi_get_named_property(env, global, "Map", &mapConstructor));
+
+  NAPI_CALL(env, true,
+    napi_new_instance(env, mapConstructor, 0, NULL, &map));
+
+  return map;
+}
+
 /**
  * ES callback. Constructor
  */
@@ -1416,6 +1431,18 @@ static napi_value init(napi_env env, napi_value exports) {
       NULL,
 
       esFilter,
+      NULL,
+      NULL,
+      NULL,
+
+      napi_default,
+      NULL
+    },
+    {
+      "toMap",
+      NULL,
+
+      esToMap,
       NULL,
       NULL,
       NULL,
